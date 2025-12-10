@@ -1,7 +1,9 @@
 ﻿#ifndef CIRCULO_H
 #define CIRCULO_H
 
-typedef void *Circulo;
+struct CirculoInterna; 
+
+typedef struct CirculoInterna *Circulo;
 
 Circulo criaCirculo(int i, double x, double y, double raio, const char *corb, const char *corp);
 
