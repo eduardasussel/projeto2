@@ -9,4 +9,7 @@ struct ListaDeFormasInterna;
 
 typedef struct ListaDeFormasInterna *ListaDeFormas;
 
+ListaDeFormas criaListaDeFormas();
+void insereForma(ListaDeFormas lista, Forma f); 
+
 #endif

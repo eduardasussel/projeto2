@@ -1,25 +1,41 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "lista.h"
-#include "circulo.h"
-#include "retangulo.h"
-#include "texto.h"
-#include "linha.h"
-#include "tipos.h"
+#include <stdlib.h>
+#include <stdio.h> 
 
-typedef enum {
-    TIPO_CIRCULO,
-    TIPO_RETANGULO,
-    TIPO_TEXTO,
-    TIPO_LINHA
-} TipoForma;
-
-typedef struct NoForma {
-    Forma forma;              
-    struct NoForma *proximo;  
+typedef struct NoFormaInterna {
+    Forma forma;
+    struct NoFormaInterna *proximo;
 } NoForma;
 
-typedef struct {
-    NoForma *cabeca; 
-    int contador;  
-} ListaDeFormas;
+typedef struct ListaDeFormasInterna {
+    NoForma *cabeca;
+    int contador;
+} ListaDeFormasControl;
+
+
+ListaDeFormas criaListaFormas() {
+    ListaDeFormasControl *l = malloc(sizeof(ListaDeFormasControl));
+    if (l == NULL) {
+        perror("Erro ao alocar ListaDeFormasControl");
+        exit(EXIT_FAILURE);
+    }
+    l->cabeca = NULL;
+    l->contador = 0;
+    return (ListaDeFormas)l;
+}
+
+void insereForma(ListaDeFormas lista, Forma f) {
+    ListaDeFormasControl *l = (ListaDeFormasControl *)lista; 
+    
+    NoForma *novoNo = (NoForma *)malloc(sizeof(NoForma));
+    if (novoNo == NULL) {
+        perror("Erro ao alocar NoForma");
+        exit(EXIT_FAILURE);
+    }
+    
+    novoNo->forma = f; 
+    
+    novoNo->proximo = l->cabeca;
+    l->cabeca = novoNo;
+    l->contador++;
+}

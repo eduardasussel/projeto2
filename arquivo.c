@@ -16,6 +16,8 @@ FILE *fp = fopen(arqg, "r");
 
     char forma;
 
+ListaDeFormas *lista = criaListaFormas();
+
 while (fscanf(fp, " %c", &forma) == 1) {
     if (forma =='c') {
         int i;
@@ -25,7 +27,9 @@ while (fscanf(fp, " %c", &forma) == 1) {
 
         Circulo c = criaCirculo(i, x, y, raio, corb, corp);
 
-        criaFormaCirculo(c);
+        Forma formaC = criaFormaCirculo(c);
+
+        insereForma(lista, c);
     }
 
      if(forma =='r') {
@@ -36,7 +40,9 @@ while (fscanf(fp, " %c", &forma) == 1) {
 
         Retangulo r = criaRetangulo(i, x, y, largura, altura, corb, corp);
 
-        criaFormaRetangulo(r);
+        Forma formaR = criaFormaRetangulo(r);
+
+        insereForma(lista, r);
     }
 
     if(forma == 't') {
@@ -47,7 +53,9 @@ while (fscanf(fp, " %c", &forma) == 1) {
 
         Texto t = criaTexto(i, x, y, a, corb, corp, txto);
 
-       criaFormaTexto(t);
+       Forma formaT = criaFormaTexto(t);
+
+       insereForma(lista, t);
     }
 
     if(forma == 'l'){
@@ -58,7 +66,9 @@ while (fscanf(fp, " %c", &forma) == 1) {
 
         Linha l = criaLinha(i, x1, y1, x2, y2, corp);
 
-        criaFormaLinha(l);
+        Forma formaL = criaFormaLinha(l);
+
+        insereForma(lista, l);
     }
 }
 

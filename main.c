@@ -3,12 +3,9 @@
 #include "arquivo.h"
 #include "circulo.h"
 
-
-
 int main(){
     
-PILHA *chao = criaPilha();
-    lerArquivoGeo("entrada/entrada.geo", chao);
-    lerArquivoQry("entrada/comandos.qry", chao);
+    lerArquivoGeo("entrada/entrada.geo");
+    lerArquivoQry("entrada/comandos.qry");
 } 
 
